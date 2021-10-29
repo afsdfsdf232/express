@@ -2,6 +2,7 @@ const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
 const router = require('./router/index')
+const errorHandler = require('./middleware/errorHandler')
 const PORT = process.env.PORT || 5000
 const app = express()
 
@@ -17,8 +18,9 @@ app.use(cors())
 
 app.use('/api', router)
 
+app.use(errorHandler())
 app.listen(PORT, ()=> {
   console.log(`Server is running at http://localhost:${PORT}`)
 })
 
-// p6
+// p9
