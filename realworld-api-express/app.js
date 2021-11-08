@@ -19,7 +19,7 @@ app.use(cors())
 app.use('/api', router)
 
 app.use(errorHandler())
-require('./model/index')
+require('./model')
 app.listen(PORT, ()=> {
   console.log(`Server is running at http://localhost:${PORT}`)
 })

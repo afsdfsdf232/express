@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 // 启动命令 cmd
-// mongd --dbpath="D:\ProTools\mongodb-win32-x86_64-windows-5.0.2\data"
+// mongod --dbpath="D:\ProTools\mongodb-win32-x86_64-windows-5.0.2\data"
 // 连接数据库
 mongoose.connect('mongodb://localhost:27017/realworld',{
   useNewUrlParser: true,
@@ -17,6 +17,6 @@ db.once('open', ()=> {
 
 // 组合模型
 module.exports = {
-  User: mongoose.Model('User', require('./user')),
-  Article: mongoose.Model('Article', require('./article'))
+  User: mongoose.model('User', require('./user')),
+  Article: mongoose.model('Article', require('./article'))
 }

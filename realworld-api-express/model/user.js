@@ -1,8 +1,9 @@
 const mongoose = require('mongoose')
-
+const baseModel = require('./base-model')
 // 用户的数据模型
 const userSchema = new mongoose.Schema({
-  userName: {
+  ...baseModel,
+  username: {
     type: String,
     required: true
   },
@@ -14,21 +15,13 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  bio: {
+  bio: { // 个人介绍
     type: String,
     default: null
   },
-  image: {
+  image: {  // 用户头像
     type: String,
     default: null
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  },
-  updatedAt: {
-    type: Date,
-    default: Date.now
   }
 })
 
