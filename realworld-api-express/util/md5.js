@@ -1,6 +1,6 @@
 const crypto = require('crypto') // node 原生模块
 // 获取cryto 支持的散列算法
-console.log(crypto.getHashes())
+// console.log(crypto.getHashes())
 
 
 
