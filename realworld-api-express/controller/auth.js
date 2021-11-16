@@ -18,6 +18,6 @@ module.exports = async (req, res, next) => {
     req.user = await User.findById(decodeToken.userId)
     next()
   } catch (err) {
-    return res.status(401).end(err)
+    return res.status(401).json(err)
   }
 }

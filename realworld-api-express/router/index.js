@@ -4,5 +4,6 @@ router.get('/',(req,res)=> {
   res.send('hello word')
 })
 router.use(require('./user'))
+router.use('/article', require('./article'))
 router.use('/profiles', require('./profile'))
 module.exports = router

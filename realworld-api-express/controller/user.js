@@ -7,7 +7,10 @@ exports.login = async (req, res, next) => {
     const user = req.user.toJSON()
     const token = await jwt.sign({
       userId: user._id
-    }, jwtSecret)
+    }, jwtSecret,
+    {
+      expiresIn: 24*60*60*60 // 失效单位秒，1天
+    })
     res.status(200).json({ user, token })
 
   } catch (err) {
