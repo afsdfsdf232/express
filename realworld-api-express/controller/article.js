@@ -1,14 +1,43 @@
 const { Article } = require('../model')
 
-exports.getArticles = (req, res, next) => {
+exports.getArticles = async (req, res, next) => {
+  try {
+    const { limit = 20, offset = 0, tag } = req.query
+    const filter = {}
+    // tag 筛选
+    if (tag) {
+      filter.tagList = tag
+    }
+    const articles = await Article.find(filter)
+              .skip(Number(offset)) // 跳过多少条, 需要将字符串转为number否则不生效
+              .limit(Number(limit)) // 每页条数, 需要将字符串转为number否则不生效
+              .populate('author')
+    const articleCount = await Article.countDocuments()
+    res.status(200).json({
+      articles,
+      articleCount
+    })
+  } catch(err) {
+    next(err)
+  }
   
 }
 exports.getFeedArticles = (req, res, next)=> {
   
 }
-exports.getArticle = (req, res, next)=> {
-  
+// 获取单个文章
+exports.getArticle = async (req, res, next)=> {
+  try {
+    const article = await Article.findById(req.params.articleId).populate('author')
+    if (!article) {
+      return res.status(404).end()
+    }
+    return res.status(200).json({article})
+  } catch(err) {
+    next(err)
+  }
 }
+// 创建文章
 exports.createArticle = async (req, res, next) => {
   try {
     // 处理请求
