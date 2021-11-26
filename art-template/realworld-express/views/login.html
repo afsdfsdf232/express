@@ -1,38 +1,37 @@
 {{extend './layout/layout.html'}}
 {{block 'body'}}
-
 <div class="auth-page">
   <div class="container page">
     <div class="row">
-
       <div class="col-md-6 offset-md-3 col-xs-12">
         <h1 class="text-xs-center">{{isLogin ? 'Sign in' : 'Sign up'}}</h1>
         <p class="text-xs-center">
           <a href="">Have an account?</a>
         </p>
-
+        {{ if errors}}
         <ul class="error-messages">
-          <li>That email is already taken</li>
+          {{ each errors }}
+          <li>{{ $value }}</li>
+          {{ /each }}
         </ul>
-
-        <form>
+        {{ /if }}
+        <form action="/register" method="post">
           {{if !isLogin}}
           <fieldset class="form-group">
-            <input class="form-control form-control-lg" type="text" placeholder="Your Name">
+            <input class="form-control form-control-lg" type="text" name="username" placeholder="Your Name">
           </fieldset>
           {{/if}}
           <fieldset class="form-group">
-            <input class="form-control form-control-lg" type="text" placeholder="Email">
+            <input class="form-control form-control-lg" type="text" name="email" placeholder="Email">
           </fieldset>
           <fieldset class="form-group">
-            <input class="form-control form-control-lg" type="password" placeholder="Password">
+            <input class="form-control form-control-lg" type="password" name="password" placeholder="Password">
           </fieldset>
           <button class="btn btn-lg btn-primary pull-xs-right">
             {{isLogin ? 'Sign in' : 'Sign up'}}
           </button>
         </form>
       </div>
-
     </div>
   </div>
 </div>
