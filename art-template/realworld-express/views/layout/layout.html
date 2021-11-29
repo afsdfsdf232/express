@@ -22,9 +22,18 @@
     <div>默认内容</div>
     {{/block}}
     <!-- 底部 -->
+    <script src='/node_modules/vue/dist/vue.js'></script>
+    <script src="/node_modules/axios/dist/axios.js"></script>
+    <script>
+      // 全局修改vue模板标识符
+      Vue.mixin({
+        delimiters:['{%','%}'], // 修改模板语法
+      })
+    </script>
     {{include './footer.html'}}
     
     {{block 'script'}} {{/block}}
+
   </body>
 
 </html>

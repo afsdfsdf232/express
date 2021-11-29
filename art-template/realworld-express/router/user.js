@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.get('/login',userCtrl.showLogin)
 router.get('/register',userCtrl.showRegister)
-router.post('/register',userCtrl.register)
+router.post('/register',userValidator.register,userCtrl.register)
 router.get('/settings',userCtrl.showSettings)
 router.get('/profile/:username',userCtrl.showProfile)
 router.get('/profile/:username/favorites',userCtrl.showProfile)

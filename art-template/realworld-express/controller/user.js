@@ -19,11 +19,11 @@ exports.showRegister = async (req, res) => {
 }
 exports.register = async (req, res ,next) => {
   try {
-    if (!req.body.email) {
-      return res.render('login', {
-        errors:['邮箱不能为空']
-      })
-    }
+    // if (!req.body.email) {
+    //   return res.render('login', {
+    //     errors:['邮箱不能为空']
+    //   })
+    // }
     res.send('验证通过')
   } catch(err){
     next(err)
